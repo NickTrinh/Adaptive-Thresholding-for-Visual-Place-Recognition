@@ -148,6 +148,59 @@ def run_vysotska_threshold_only(S):
     return accepted
 
 
+def run_hybrid_scalar(S, thresholds, fanout=5):
+    """H1: Vysotska sequence matcher, but the non-matching cost comes from OUR
+    per-place thresholds (median over places) instead of Vysotska's per-query
+    thresholds. Tests whether our reference-derived rejection level helps the
+    matcher, while still collapsing to a single scalar."""
+    nmc = 1.0 - float(np.median(thresholds))
+    matches, _, _, _ = sequence_match(S, non_matching_cost=nmc, fanout=fanout)
+    return {q: int(r) for q, r in matches.items() if r is not None}
+
+
+def _ref_to_place(places):
+    ref2place = {}
+    for pi, place in enumerate(places):
+        for r in place:
+            ref2place[int(r)] = pi
+    return ref2place
+
+
+def run_hybrid_path(S, places, thresholds, fanout=5, gate="pathcell"):
+    """H2: run Vysotska's graph sequence matcher to get the temporally coherent
+    path (one (q, r) per query row), then accept each path cell only if it clears
+    OUR per-place threshold; otherwise reject the query as unknown.
+
+    gate="pathcell": accept (q, r_path) iff S[q, r_path] >= theta[place(r_path)].
+    gate="argmax":   accept (q, r*) with r* = argmax_r S[q] iff it clears theta[place(r*)].
+    gate="either":   accept the path cell if it clears its place threshold; else
+                     fall back to the argmax cell if that clears its place threshold.
+    """
+    nmc = 1.0 - float(np.median(thresholds))
+    _, all_path, _, _ = sequence_match(S, non_matching_cost=nmc, fanout=fanout)
+    ref2place = _ref_to_place(places)
+    accepted = {}
+    for (q, r) in all_path:
+        r = int(r)
+        pi_path = ref2place.get(r)
+        path_ok = pi_path is not None and S[q, r] >= thresholds[pi_path]
+        r_star = int(np.argmax(S[q]))
+        pi_star = ref2place.get(r_star)
+        star_ok = pi_star is not None and S[q, r_star] >= thresholds[pi_star]
+        if gate == "pathcell":
+            if path_ok:
+                accepted[q] = r
+        elif gate == "argmax":
+            if star_ok:
+                accepted[q] = r_star
+        elif gate == "either":
+            if path_ok:
+                accepted[q] = r
+            elif star_ok:
+                accepted[q] = r_star
+    return accepted
+
+
 def evaluate(predictions, genuine_queries, distractor_queries, gt_map, tolerance):
     """
     Evaluate predictions.
@@ -284,6 +337,22 @@ def run_dataset(name, ref_descs, query_descs, gt_map, tolerance,
     print(f"  Vys (full):   P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}%")
     results["closed_Vysotska"] = r
 
+    # Hybrid: our per-place threshold + Vysotska's sequence matcher
+    hyb_pred = run_hybrid_path(S_closed, places, thresholds, fanout=fanout, gate="pathcell")
+    r = evaluate(hyb_pred, genuine_closed, [], gt_map, tolerance)
+    print(f"  Hyb (path):   P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}%")
+    results["closed_Hybrid"] = r
+
+    hyb_e_pred = run_hybrid_path(S_closed, places, thresholds, fanout=fanout, gate="either")
+    r = evaluate(hyb_e_pred, genuine_closed, [], gt_map, tolerance)
+    print(f"  Hyb (either): P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}%")
+    results["closed_HybridEither"] = r
+
+    hyb_s_pred = run_hybrid_scalar(S_closed, thresholds, fanout=fanout)
+    r = evaluate(hyb_s_pred, genuine_closed, [], gt_map, tolerance)
+    print(f"  Hyb (scalar): P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}%")
+    results["closed_HybridScalar"] = r
+
     # ── NATURAL OPEN-SET ──
     print(f"\n--- NATURAL OPEN-SET ({ref_fraction*100:.0f}% ref) ---")
     ref_cutoff = int(n_ref * ref_fraction)
@@ -345,6 +414,22 @@ def run_dataset(name, ref_descs, query_descs, gt_map, tolerance,
     r = evaluate(vys_pred_nat, genuine_nat, distractor_nat, gt_map_trunc, tolerance)
     print(f"  Vys (full):   P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}% Rej={r['rejection']:.1f}%")
     results["natural_Vysotska"] = r
+
+    # Hybrid: our per-place threshold (on truncated refs) + Vysotska's sequence matcher
+    hyb_pred_nat = run_hybrid_path(S_nat, places_trunc, thresholds_t, fanout=fanout, gate="pathcell")
+    r = evaluate(hyb_pred_nat, genuine_nat, distractor_nat, gt_map_trunc, tolerance)
+    print(f"  Hyb (path):   P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}% Rej={r['rejection']:.1f}%")
+    results["natural_Hybrid"] = r
+
+    hyb_e_pred_nat = run_hybrid_path(S_nat, places_trunc, thresholds_t, fanout=fanout, gate="either")
+    r = evaluate(hyb_e_pred_nat, genuine_nat, distractor_nat, gt_map_trunc, tolerance)
+    print(f"  Hyb (either): P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}% Rej={r['rejection']:.1f}%")
+    results["natural_HybridEither"] = r
+
+    hyb_s_pred_nat = run_hybrid_scalar(S_nat, thresholds_t, fanout=fanout)
+    r = evaluate(hyb_s_pred_nat, genuine_nat, distractor_nat, gt_map_trunc, tolerance)
+    print(f"  Hyb (scalar): P={r['P']:.1f}% R={r['R']:.1f}% F1={r['F1']:.1f}% Rej={r['rejection']:.1f}%")
+    results["natural_HybridScalar"] = r
 
     return results
 
@@ -435,6 +520,32 @@ def main():
         vrej = r["natural_Vysotska"]["rejection"]
         print(f"  {name:<15} {of1:>7.1f}% {orej:>8.1f}% "
               f"{vtf1:>7.1f}% {vtrej:>8.1f}% {vf1:>7.1f}% {vrej:>8.1f}%")
+
+    print(f"\nHybrid (our per-place threshold + Vysotska sequence matcher):")
+    print(f"  {'Dataset':<15} {'Closed F1':>10} {'Open F1':>9} {'Open Rej':>9} "
+          f"| {'Ours F1':>8} {'Ours Rej':>9} {'Vys F1':>8} {'Vys Rej':>9}")
+    print(f"  {'─'*95}")
+    for name in ds_order:
+        r = all_results[name]
+        hcf1 = r["closed_Hybrid"]["F1"]
+        hof1 = r["natural_Hybrid"]["F1"]
+        horej = r["natural_Hybrid"]["rejection"]
+        of1 = r["natural_Ours"]["F1"]
+        orej = r["natural_Ours"]["rejection"]
+        vf1 = r["natural_Vysotska"]["F1"]
+        vrej = r["natural_Vysotska"]["rejection"]
+        print(f"  {name:<15} {hcf1:>9.1f}% {hof1:>8.1f}% {horej:>8.1f}% "
+              f"| {of1:>7.1f}% {orej:>8.1f}% {vf1:>7.1f}% {vrej:>8.1f}%")
+
+    print(f"\nHybrid variants (open-set F1 / Rej): path-cell gate | either gate | scalar nmc")
+    print(f"  {'Dataset':<15} {'path F1':>8} {'path Rej':>9} {'eith F1':>8} {'eith Rej':>9} {'scal F1':>8} {'scal Rej':>9}")
+    print(f"  {'─'*72}")
+    for name in ds_order:
+        r = all_results[name]
+        print(f"  {name:<15} "
+              f"{r['natural_Hybrid']['F1']:>7.1f}% {r['natural_Hybrid']['rejection']:>8.1f}% "
+              f"{r['natural_HybridEither']['F1']:>7.1f}% {r['natural_HybridEither']['rejection']:>8.1f}% "
+              f"{r['natural_HybridScalar']['F1']:>7.1f}% {r['natural_HybridScalar']['rejection']:>8.1f}%")
 
     out_path = "results/final_all_datasets_dinov2salad.json"
     os.makedirs("results", exist_ok=True)

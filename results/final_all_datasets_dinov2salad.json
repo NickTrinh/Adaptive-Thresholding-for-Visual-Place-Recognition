@@ -44,6 +44,39 @@
       "rejection": null,
       "n_distractor": 0
     },
+    "closed_Hybrid": {
+      "P": 99.0,
+      "R": 100.0,
+      "F1": 99.5,
+      "TP": 495,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 99.0,
+      "R": 100.0,
+      "F1": 99.5,
+      "TP": 495,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
+      "P": 99.0,
+      "R": 100.0,
+      "F1": 99.5,
+      "TP": 495,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
     "natural_Baseline": {
       "P": 69.2,
       "R": 100.0,
@@ -87,6 +120,39 @@
       "TN": 116,
       "rejection": 77.33,
       "n_distractor": 150
+    },
+    "natural_Hybrid": {
+      "P": 91.08,
+      "R": 99.71,
+      "F1": 95.2,
+      "TP": 347,
+      "FP": 34,
+      "FN": 1,
+      "TN": 118,
+      "rejection": 78.67,
+      "n_distractor": 150
+    },
+    "natural_HybridEither": {
+      "P": 81.65,
+      "R": 99.71,
+      "F1": 89.78,
+      "TP": 347,
+      "FP": 78,
+      "FN": 1,
+      "TN": 74,
+      "rejection": 49.33,
+      "n_distractor": 150
+    },
+    "natural_HybridScalar": {
+      "P": 88.78,
+      "R": 100.0,
+      "F1": 94.05,
+      "TP": 348,
+      "FP": 44,
+      "FN": 0,
+      "TN": 108,
+      "rejection": 72.0,
+      "n_distractor": 150
     }
   },
   "Bonn": {
@@ -124,6 +190,39 @@
       "n_distractor": 0
     },
     "closed_Vysotska": {
+      "P": 82.41,
+      "R": 100.0,
+      "F1": 90.36,
+      "TP": 445,
+      "FP": 95,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_Hybrid": {
+      "P": 82.41,
+      "R": 100.0,
+      "F1": 90.36,
+      "TP": 445,
+      "FP": 95,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 82.41,
+      "R": 100.0,
+      "F1": 90.36,
+      "TP": 445,
+      "FP": 95,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
       "P": 82.41,
       "R": 100.0,
       "F1": 90.36,
@@ -177,6 +276,39 @@
       "TN": 92,
       "rejection": 89.32,
       "n_distractor": 103
+    },
+    "natural_Hybrid": {
+      "P": 86.59,
+      "R": 100.0,
+      "F1": 92.82,
+      "TP": 394,
+      "FP": 61,
+      "FN": 0,
+      "TN": 89,
+      "rejection": 86.41,
+      "n_distractor": 103
+    },
+    "natural_HybridEither": {
+      "P": 84.91,
+      "R": 100.0,
+      "F1": 91.84,
+      "TP": 394,
+      "FP": 70,
+      "FN": 0,
+      "TN": 80,
+      "rejection": 77.67,
+      "n_distractor": 103
+    },
+    "natural_HybridScalar": {
+      "P": 86.78,
+      "R": 100.0,
+      "F1": 92.92,
+      "TP": 394,
+      "FP": 60,
+      "FN": 0,
+      "TN": 90,
+      "rejection": 87.38,
+      "n_distractor": 103
     }
   },
   "Freiburg": {
@@ -214,6 +346,39 @@
       "n_distractor": 0
     },
     "closed_Vysotska": {
+      "P": 84.91,
+      "R": 100.0,
+      "F1": 91.84,
+      "TP": 574,
+      "FP": 102,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_Hybrid": {
+      "P": 84.91,
+      "R": 100.0,
+      "F1": 91.84,
+      "TP": 574,
+      "FP": 102,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 84.91,
+      "R": 100.0,
+      "F1": 91.84,
+      "TP": 574,
+      "FP": 102,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
       "P": 84.91,
       "R": 100.0,
       "F1": 91.84,
@@ -267,6 +432,39 @@
       "TN": 223,
       "rejection": 93.7,
       "n_distractor": 238
+    },
+    "natural_Hybrid": {
+      "P": 89.58,
+      "R": 99.75,
+      "F1": 94.39,
+      "TP": 404,
+      "FP": 47,
+      "FN": 1,
+      "TN": 224,
+      "rejection": 94.12,
+      "n_distractor": 238
+    },
+    "natural_HybridEither": {
+      "P": 88.43,
+      "R": 100.0,
+      "F1": 93.86,
+      "TP": 405,
+      "FP": 53,
+      "FN": 0,
+      "TN": 218,
+      "rejection": 91.6,
+      "n_distractor": 238
+    },
+    "natural_HybridScalar": {
+      "P": 90.6,
+      "R": 100.0,
+      "F1": 95.07,
+      "TP": 405,
+      "FP": 42,
+      "FN": 0,
+      "TN": 229,
+      "rejection": 96.22,
+      "n_distractor": 238
     }
   },
   "GardensPoint": {
@@ -314,6 +512,39 @@
       "rejection": null,
       "n_distractor": 0
     },
+    "closed_Hybrid": {
+      "P": 97.5,
+      "R": 100.0,
+      "F1": 98.73,
+      "TP": 195,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 97.5,
+      "R": 100.0,
+      "F1": 98.73,
+      "TP": 195,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
+      "P": 97.5,
+      "R": 100.0,
+      "F1": 98.73,
+      "TP": 195,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
     "natural_Baseline": {
       "P": 68.0,
       "R": 100.0,
@@ -348,6 +579,39 @@
       "n_distractor": 60
     },
     "natural_Vysotska": {
+      "P": 96.48,
+      "R": 100.0,
+      "F1": 98.21,
+      "TP": 137,
+      "FP": 5,
+      "FN": 0,
+      "TN": 58,
+      "rejection": 96.67,
+      "n_distractor": 60
+    },
+    "natural_Hybrid": {
+      "P": 91.33,
+      "R": 100.0,
+      "F1": 95.47,
+      "TP": 137,
+      "FP": 13,
+      "FN": 0,
+      "TN": 50,
+      "rejection": 83.33,
+      "n_distractor": 60
+    },
+    "natural_HybridEither": {
+      "P": 91.33,
+      "R": 100.0,
+      "F1": 95.47,
+      "TP": 137,
+      "FP": 13,
+      "FN": 0,
+      "TN": 50,
+      "rejection": 83.33,
+      "n_distractor": 60
+    },
+    "natural_HybridScalar": {
       "P": 96.48,
       "R": 100.0,
       "F1": 98.21,
@@ -404,6 +668,39 @@
       "rejection": null,
       "n_distractor": 0
     },
+    "closed_Hybrid": {
+      "P": 98.7,
+      "R": 100.0,
+      "F1": 99.35,
+      "TP": 380,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 98.7,
+      "R": 100.0,
+      "F1": 99.35,
+      "TP": 380,
+      "FP": 5,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
+      "P": 98.7,
+      "R": 99.74,
+      "F1": 99.21,
+      "TP": 379,
+      "FP": 5,
+      "FN": 1,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
     "natural_Baseline": {
       "P": 65.45,
       "R": 100.0,
@@ -447,6 +744,39 @@
       "TN": 70,
       "rejection": 60.34,
       "n_distractor": 116
+    },
+    "natural_Hybrid": {
+      "P": 80.25,
+      "R": 97.38,
+      "F1": 87.99,
+      "TP": 260,
+      "FP": 64,
+      "FN": 7,
+      "TN": 54,
+      "rejection": 46.55,
+      "n_distractor": 116
+    },
+    "natural_HybridEither": {
+      "P": 76.25,
+      "R": 98.11,
+      "F1": 85.81,
+      "TP": 260,
+      "FP": 81,
+      "FN": 5,
+      "TN": 39,
+      "rejection": 33.62,
+      "n_distractor": 116
+    },
+    "natural_HybridScalar": {
+      "P": 97.33,
+      "R": 95.51,
+      "F1": 96.41,
+      "TP": 255,
+      "FP": 7,
+      "FN": 12,
+      "TN": 111,
+      "rejection": 95.69,
+      "n_distractor": 116
     }
   },
   "ESSEX3IN1": {
@@ -484,6 +814,39 @@
       "n_distractor": 0
     },
     "closed_Vysotska": {
+      "P": 99.05,
+      "R": 100.0,
+      "F1": 99.52,
+      "TP": 208,
+      "FP": 2,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_Hybrid": {
+      "P": 99.05,
+      "R": 100.0,
+      "F1": 99.52,
+      "TP": 208,
+      "FP": 2,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridEither": {
+      "P": 99.05,
+      "R": 100.0,
+      "F1": 99.52,
+      "TP": 208,
+      "FP": 2,
+      "FN": 0,
+      "TN": 0,
+      "rejection": null,
+      "n_distractor": 0
+    },
+    "closed_HybridScalar": {
       "P": 99.05,
       "R": 100.0,
       "F1": 99.52,
@@ -536,6 +899,39 @@
       "FN": 0,
       "TN": 41,
       "rejection": 65.08,
+      "n_distractor": 63
+    },
+    "natural_Hybrid": {
+      "P": 82.29,
+      "R": 99.31,
+      "F1": 90.0,
+      "TP": 144,
+      "FP": 31,
+      "FN": 1,
+      "TN": 34,
+      "rejection": 53.97,
+      "n_distractor": 63
+    },
+    "natural_HybridEither": {
+      "P": 73.85,
+      "R": 99.31,
+      "F1": 84.71,
+      "TP": 144,
+      "FP": 51,
+      "FN": 1,
+      "TN": 14,
+      "rejection": 22.22,
+      "n_distractor": 63
+    },
+    "natural_HybridScalar": {
+      "P": 83.33,
+      "R": 100.0,
+      "F1": 90.91,
+      "TP": 145,
+      "FP": 29,
+      "FN": 0,
+      "TN": 36,
+      "rejection": 57.14,
       "n_distractor": 63
     }
   }

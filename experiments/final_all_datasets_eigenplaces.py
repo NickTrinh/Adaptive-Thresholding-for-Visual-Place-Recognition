@@ -111,6 +111,19 @@ def main():
               f"{r['natural_VysotskaThresh']['F1']:>7.1f} {r['natural_VysotskaThresh']['rejection']:>7.1f}  "
               f"{r['natural_Vysotska']['F1']:>7.1f} {r['natural_Vysotska']['rejection']:>8.1f}")
 
+    print(f"\n{'='*78}")
+    print("EIGENPLACES — Hybrid (our per-place threshold + Vysotska sequence matcher)")
+    print(f"{'='*78}")
+    print(f"{'Dataset':16s}  {'Cl.F1':>7s}  {'Op.F1':>7s} {'Op.Rej':>7s}  "
+          f"| {'Ours F1':>8s} {'Ours Rej':>9s}  {'Vys F1':>7s} {'Vys Rej':>8s}")
+    for ds in ds_order:
+        r = all_results[ds]
+        print(f"{ds:16s}  "
+              f"{r['closed_Hybrid']['F1']:>7.1f}  "
+              f"{r['natural_Hybrid']['F1']:>7.1f} {r['natural_Hybrid']['rejection']:>7.1f}  "
+              f"| {r['natural_Ours']['F1']:>8.1f} {r['natural_Ours']['rejection']:>9.1f}  "
+              f"{r['natural_Vysotska']['F1']:>7.1f} {r['natural_Vysotska']['rejection']:>8.1f}")
+
     out_path = "results/final_all_datasets_eigenplaces.json"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:

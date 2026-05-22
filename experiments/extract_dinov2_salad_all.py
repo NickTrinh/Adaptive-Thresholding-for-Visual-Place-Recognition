@@ -1,7 +1,8 @@
 """
 Extract DINOv2 SALAD descriptors for all datasets.
 
-Must be run on a GPU node.
+GPU strongly recommended (sub-second/image on a V100); CPU works but is
+~3.6 s/image, so the full 6-dataset extraction takes hours on CPU.
 
 Usage:
     python -m experiments.extract_dinov2_salad_all

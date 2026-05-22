@@ -3,6 +3,9 @@ images/GardensPoint/
 images/SFU/
 images/StLucia_small/
 
+# Nordland-500 release-asset tarball (uploaded to a GitHub release, not committed)
+Nordland-500.tar.gz
+
 # Ignore Mac DS_Store files
 .DS_Store
 **/.DS_Store
@@ -211,3 +214,4 @@ tmp/
 IEEE RCC 2025 Adaptive Thresholding for Visual Place Recognition using Negative Gaussian Mixture Statistics.pdf
 IEEE_RAL_VPR
 vysotska2025icra.pdf
+docs/

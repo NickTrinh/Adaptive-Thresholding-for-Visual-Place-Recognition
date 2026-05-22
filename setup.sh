@@ -5,7 +5,7 @@
 #
 # Expected flow:
 #   bash setup.sh
-#   python -m experiments.extract_dinov2_salad_all   # GPU required
+#   python -m experiments.extract_dinov2_salad_all   # GPU recommended
 #   python -m experiments.final_all_datasets         # CPU OK, ~few minutes
 #
 # Run from the repository root. Activate your Python env first
@@ -15,6 +15,12 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$REPO_ROOT"
+
+# Nordland-500 is a 278 MB derived subset (the exact 500 winter + 500 summer
+# frames used in the paper). It is hosted as a release asset because the
+# upstream HuggingFace dataset ships only full-traversal tarballs (~10 GB each).
+# >>> Update this to your GitHub release asset URL before publishing. <<<
+NORDLAND_500_URL="https://github.com/NickTrinh/VPR_Tutorial/releases/download/datasets-v1/Nordland-500.tar.gz"
 
 echo "=========================================="
 echo " VPR RAL Reproducer — Setup"
@@ -95,13 +101,18 @@ fi
 cd "$REPO_ROOT"
 echo
 
-# ---------- 3. Nordland (manual) ----------
-echo "[3/3] Nordland-500 — manual step required"
-echo "  The 500-image subset is not auto-downloaded (HuggingFace gated/LFS)."
-echo "  Download from: https://huggingface.co/datasets/Somayeh-h/Nordland"
-echo "  Place the first 500 winter and summer frames (1 fps) as:"
-echo "    images/Nordland-500/winter/*.png"
-echo "    images/Nordland-500/summer/*.png"
+# ---------- 3. Nordland-500 ----------
+echo "[3/3] Downloading Nordland-500 subset (278 MB)..."
+cd images
+if [ -d "Nordland-500" ]; then
+    echo "  [skip] Nordland-500/ already exists"
+else
+    echo "  [get]  $NORDLAND_500_URL"
+    wget -q --show-progress "$NORDLAND_500_URL"
+    tar -xzf Nordland-500.tar.gz
+    rm -f Nordland-500.tar.gz
+fi
+cd "$REPO_ROOT"
 echo
 
 echo "=========================================="

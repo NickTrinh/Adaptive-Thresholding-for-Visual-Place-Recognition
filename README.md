@@ -165,8 +165,7 @@ Step 3 is CPU-only and reads the cached descriptors.
 
 ## Datasets
 
-`setup.sh` auto-fetches everything except Nordland-500 (HuggingFace LFS,
-one manual step). The script prints the URL and target path at the end.
+`setup.sh` auto-fetches all six datasets into `images/`.
 
 | Dataset        | Size   | Auto-fetched? | Source |
 |----------------|--------|---------------|--------|
@@ -175,14 +174,17 @@ one manual step). The script prints the URL and target path at the end.
 | Bonn           | 1.2 GB | yes | <http://www.ipb.uni-bonn.de/html/projects/visual_place_recognition/bonn_example.zip> |
 | Freiburg       | 738 MB | yes | <http://www.ipb.uni-bonn.de/html/projects/visual_place_recognition/freiburg_example.zip> |
 | ESSEX3IN1      | 1.5 GB | yes (git clone) | <https://github.com/MubarizZaffar/ESSEX3IN1-Dataset> |
-| Nordland-500   | 500-img subset of ~36 GB | **manual** | <https://huggingface.co/datasets/Somayeh-h/Nordland> |
+| Nordland-500   | 278 MB | yes (release asset) | derived subset of [Nordland](https://huggingface.co/datasets/Somayeh-h/Nordland) |
 
-For Nordland, place the first 500 frames of the 1 fps winter and summer
-traversals at `images/Nordland-500/{winter,summer}/` to match
-Vysotska et al.'s protocol. The expected filenames are
-`Place0000_Cond03_G00.png` … `Place0499_Cond03_G00.png` for winter and
-`Place0000_Cond01_G00.png` … `Place0499_Cond01_G00.png` for summer (these
-are the first 500 sorted alphabetically from the HuggingFace dump).
+Nordland-500 is a 278 MB derived subset — the exact 500 winter and 500
+summer frames (1 fps traversals) used in the paper, already in the
+`Place0000_Cond03_G00.png` … `Place0499_Cond01_G00.png` naming the
+pipeline expects. It is distributed as a GitHub release asset and fetched
+automatically by `setup.sh`, because the upstream Nordland dataset ships
+only full-traversal tarballs (~10 GB per season) in scrambled internal
+order, so the 500-frame subset cannot be retrieved without downloading a
+full traversal. The underlying imagery is from the Nordland dataset
+(Sünderhauf et al., 2013); please cite the original source if you use it.
 
 ---
 
