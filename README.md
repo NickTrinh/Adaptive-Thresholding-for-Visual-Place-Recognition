@@ -248,11 +248,14 @@ of truth for the result tables.
   adaptive multiplier `k = clip(sep/2, 1, 2)` is computed per place from
   reference-only statistics; no manual knob.
 
-- **A natural hybrid exists.** Replacing the sequence matcher's
-  median-derived non-matching cost with a per-place threshold from our
-  pipeline would let the graph traversal handle ordering while per-place
-  statistics handle rejection. We discuss this in §IV-D-4 but leave the
-  experimental implementation to follow-on work.
+- **A natural hybrid exists, and a preliminary version ships here.**
+  Feeding a per-place threshold into the sequence matcher's
+  non-matching cost lets the graph traversal handle ordering while
+  per-place statistics handle rejection. `final_all_datasets.py`
+  includes this (`run_hybrid_scalar` / `run_hybrid_path`); the paper
+  treats the combination as future work, because the sequence matcher
+  as standardly formulated needs the full similarity matrix while our
+  per-place threshold does not.
 
 ---
 

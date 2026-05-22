@@ -62,7 +62,7 @@ used for the paper. A CUDA GPU is needed only for the descriptor extraction step
 
 | File | Purpose |
 |------|---------|
-| `final_all_datasets.py` | **Canonical paper reproducer (Tables II and III).** Loads all 6 datasets with DINOv2 SALAD descriptors, runs discovery → threshold → filter-then-rank, compares to Vysotska. Writes `results/final_all_datasets_dinov2salad.json`. |
+| `final_all_datasets.py` | **Canonical paper reproducer (Tables II and III).** Loads all 6 datasets with DINOv2 SALAD descriptors, runs discovery → threshold → filter-then-rank, compares to Vysotska. Also includes preliminary hybrid variants (`run_hybrid_scalar` / `run_hybrid_path`) — per-place threshold feeding Vysotska's sequence matcher; not used by the paper, kept as future-work code. Writes `results/final_all_datasets_dinov2salad.json`. |
 | `final_all_datasets_eigenplaces.py` | Same pipeline as above but reads EigenPlaces caches; produces **Tables IV and V** (descriptor-agnostic validation in §IV-E). Writes `results/final_all_datasets_eigenplaces.json`. |
 | `extract_dinov2_salad_all.py` | GPU descriptor extraction for all 6 datasets via `torch.hub.load("serizba/salad", "dinov2_salad")`. Re-runs skip already-cached images. |
 | `extract_eigenplaces_all.py` | GPU EigenPlaces (ResNet50, 2048-d) extraction for the same 6 datasets. Wipes target caches before extracting to guarantee a fresh run. Uses `Resize((480, 480))` so mixed-aspect-ratio datasets (ESSEX3IN1) don't crash `torch.stack`. |
@@ -88,10 +88,10 @@ Inherited from the upstream tutorial. **Not used by the RAL paper code** —
 
 | File | Purpose |
 |------|---------|
-| `RCC2025.tex` | LaTeX manuscript ("Adaptive Per-Place Thresholding for Open-Set Visual Place Recognition") |
-| `RCC2025.pdf` | Compiled PDF (6 pages) |
+| `IEEE_RAL_VPR.tex` | LaTeX manuscript ("Adaptive Per-Place Thresholding from Reference Statistics for Open-Set Visual Place Recognition") |
+| `IEEE_RAL_VPR.pdf` | Compiled PDF (7 pages) |
 | `referencesB.bib` | Bibliography |
-| `IEEEtran.cls`, `IEEEtran_HOWTO.pdf` | IEEE class file |
+| `IEEEtran.cls` | IEEE document class |
 | `fig8_method_pipeline.png` | Method pipeline diagram (only figure used by the paper) |
 
 ### Other directories
