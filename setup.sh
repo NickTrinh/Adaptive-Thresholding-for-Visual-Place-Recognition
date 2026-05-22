@@ -20,7 +20,7 @@ cd "$REPO_ROOT"
 # frames used in the paper). It is hosted as a release asset because the
 # upstream HuggingFace dataset ships only full-traversal tarballs (~10 GB each).
 # >>> Update this to your GitHub release asset URL before publishing. <<<
-NORDLAND_500_URL="https://github.com/NickTrinh/VPR_Tutorial/releases/download/datasets-v1/Nordland-500.tar.gz"
+NORDLAND_500_URL="https://github.com/NickTrinh/Adaptive-Thresholding-for-Visual-Place-Recognition/releases/download/datasets-v1/Nordland-500.tar.gz"
 
 echo "=========================================="
 echo " VPR RAL Reproducer — Setup"

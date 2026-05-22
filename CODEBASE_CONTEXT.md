@@ -336,8 +336,8 @@ and 30+ pts on Freiburg). Cited in §III-A and §IV-E of the paper.
 ## Reviewer Reproduction Steps
 
 ```bash
-git clone https://github.com/NickTrinh/VPR_Tutorial.git
-cd VPR_Tutorial
+git clone https://github.com/NickTrinh/Adaptive-Thresholding-for-Visual-Place-Recognition.git
+cd Adaptive-Thresholding-for-Visual-Place-Recognition
 
 conda create -n vprtutorial python=3.11
 conda activate vprtutorial

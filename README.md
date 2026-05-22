@@ -143,8 +143,8 @@ extracted by `experiments/extract_eigenplaces_all.py`.
 ## Reproduce in three commands
 
 ```bash
-git clone https://github.com/NickTrinh/VPR_Tutorial.git
-cd VPR_Tutorial
+git clone https://github.com/NickTrinh/Adaptive-Thresholding-for-Visual-Place-Recognition.git
+cd Adaptive-Thresholding-for-Visual-Place-Recognition
 conda create -n vprtutorial python=3.11 && conda activate vprtutorial
 
 bash setup.sh                                    # 1. install deps + auto-download datasets
